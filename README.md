@@ -14,6 +14,11 @@ GMCMthesis 是为全国研究生数学建模竞赛编写的LaTeX模板, 旨在�
 ![](https://github.com/latexstudio/GMCMthesis/blob/master/gmcmthesis.png)
 
 ## 更新记录
+
+2017年9月13日更新说明：
+
+1. 去掉正文的页眉信息。
+
 2017年9月12日更新说明：
 
 1. 更新了封面的logo和页眉的版式；
