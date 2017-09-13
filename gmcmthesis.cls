@@ -301,7 +301,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
  
  \vskip4em
  
-  %\thispagestyle{empty} 
+  \thispagestyle{gmcmheadings} 
    \renewcommand\arraystretch{1.2}
  \noindent \begin{tabularx}{\textwidth}{lX}
   \zihao{3}\heiti 学\qquad 校&\zihao{3}\heiti\mcm@tokens@schoolname\\
@@ -603,7 +603,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \endquotation
 }
 
-\pagestyle{gmcmheadings}
+\pagestyle{plain}
 \endinput
 
 
