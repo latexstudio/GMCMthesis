@@ -124,6 +124,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setsansfont{Arial}
 
 \setCJKfamilyfont{xw}{STXinwei}
+
 %
 %\setCJKfamilyfont{zhyou}{YouYuan}
 \ifx\lishu\undefined%
@@ -481,7 +482,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 	\gdef\thesection{\appendixname\@Alph\c@section}}		
 % 重定义参考文献环境
 \renewenvironment{thebibliography}[1]
-     {\section{\refname}%
+     {\section*{\refname}%
       \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -602,7 +603,22 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 注意电子版论文中不得出现此页，即电子版论文的第一页为标题、摘要和关键词页。）
 \endquotation
 }
+\newcounter{app}
+\renewcommand\section{%
+    \refstepcounter{app}%
+    \@startsection{section}{1}{\z@}%
+ 	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\centering\normalfont\Large\bfseries}}
 
+\renewcommand\appendix{\par
+    \clearpage
+    \cleardoublepage
+    \phantomsection
+    \setcounter{app}{0}
+    \gdef\thesection{\appendixname\@Alph{\theapp}}
+    \gdef\thesubsection{\thesection\thinspace.\thinspace\arabic{subsection}}
+}
 \pagestyle{plain}
 \endinput
 
