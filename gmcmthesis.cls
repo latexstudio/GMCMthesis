@@ -420,7 +420,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 中文标题格式设置
 % 目录深度
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{3}
 % 节标题格式, 居中, 使用\chinese命令修改计数器, \kern 使得数字和内容不至于太远
 \renewcommand\thesection{\arabic{section}.}
 \renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
@@ -609,6 +609,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
 % 小节的目录格式
 \titlecontents{subsection}[30pt]{\songti}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+
+\titlecontents{subsubsection}[55pt]{\songti}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
 
 \pagestyle{plain}
