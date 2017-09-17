@@ -101,9 +101,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{ulem}
 % 尺寸计算
 \RequirePackage{calc}
-
+\RequirePackage{titletoc,url}
 % 超链接 hyperref 的设置
-\RequirePackage{hyperref}
+%\RequirePackage{hyperref}
 %% Document Layout
 % 页面布局
 \geometry{top=25.4mm,bottom=25.4mm,left=31.8mm,right=31.8mm,headsep=8mm}
@@ -203,20 +203,20 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 超链接
-\AtBeginDocument{%
-	\hypersetup{%
-		% unicode=false, % hyperref 和 xetex 同时使用时不能开启 Unicode 选项.
-		hyperfootnotes=true,
-		hyperindex=true,
-		colorlinks=true,
-		bookmarksnumbered=true,
-		bookmarksopen=true,
- 		bookmarksopenlevel=0,
-		breaklinks=true}%
-}
-\if@mcm@bwprint
-\AtBeginDocument{\hypersetup{hidelinks}}
-\else\relax\fi
+% \AtBeginDocument{%
+	% \hypersetup{%
+		% % unicode=false, % hyperref 和 xetex 同时使用时不能开启 Unicode 选项.
+		% hyperfootnotes=true,
+		% hyperindex=true,
+		% colorlinks=true,
+		% bookmarksnumbered=true,
+		% bookmarksopen=true,
+ 		% bookmarksopenlevel=0,
+		% breaklinks=true}%
+% }
+% \if@mcm@bwprint
+% \AtBeginDocument{\hypersetup{hidelinks}}
+% \else\relax\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Document Markup
@@ -603,22 +603,14 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 注意电子版论文中不得出现此页，即电子版论文的第一页为标题、摘要和关键词页。）
 \endquotation
 }
-\newcounter{app}
-\renewcommand\section{%
-    \refstepcounter{app}%
-    \@startsection{section}{1}{\z@}%
- 	{-3.5ex \@plus -1ex \@minus -.2ex}%
-	{2.3ex \@plus.2ex}%
-	{\centering\normalfont\Large\bfseries}}
+%设置目录格式
+% 节的目录格式
+\titlecontents{section}[0pt]{\vspace{2mm}\bfseries}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+% 小节的目录格式
+\titlecontents{subsection}[30pt]{\songti}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
 
-\renewcommand\appendix{\par
-    \clearpage
-    \cleardoublepage
-    \phantomsection
-    \setcounter{app}{0}
-    \gdef\thesection{\appendixname\@Alph{\theapp}}
-    \gdef\thesubsection{\thesection\thinspace.\thinspace\arabic{subsection}}
-}
 \pagestyle{plain}
 \endinput
 
