@@ -2,8 +2,6 @@
 %!TEX program  = xelatex
 
 \documentclass[bwprint]{gmcmthesis}
-% \documentclass[withoutpreface,bwprint]{cumcmthesis}
-% 去掉封面与编号页
 
 \title{全国研究生数学建模竞赛论文标题}
 \baominghao{4321} %参赛队号
@@ -12,16 +10,20 @@
 \memberb{向左} %队员B
 \memberc{哈哈} %队员C
 \begin{document}
+ 
+ %生成标题
  \maketitle
- \begin{abstract}
- 本模板是为全国研究生数学建模竞赛编写的 \LaTeX{} 模板, 旨在让大家专注于
+ 
+ %填写摘要
+\begin{abstract}
+本模板是为全国研究生数学建模竞赛编写的 \LaTeX{} 模板, 旨在让大家专注于
 论文的内容写作, 而不用花费过多精力在格式的定制和调整上. 本手册是相应的参考, 其
 中提供了一些环境和命令可以让模板的使用更为方便. 同时需要注意, 使用者需要有一
 定的 \LaTeX{} 的使用经验, 至少要会使用 ctex 宏包的一些功能, 比如调节字距或修改字体
 大小等等.
 
 
-另外, 欢迎大家购买我们是视频教程，点击\url{https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-3473795048.4.ThFQCG&id=43823508044}.
+另外, 欢迎大家购买我们是视频教程，点击\href{https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-3473795048.4.ThFQCG&id=43823508044}{\fbox{这里}}。
 
 欢迎大家到QQ群里沟通交流：91940767.
 
@@ -35,7 +37,7 @@
 
 \pagestyle{plain}
 
-%目录
+%目录 不推荐加
 \tableofcontents
 
 \section{问题重述}
@@ -92,26 +94,33 @@
 
 \subsection{问题二分析}
 题目要求从折叠桌的稳固性好、加工方便、用材最少三个角度，确定设计加工参数。我们可以从应力、支撑面积考虑稳固性，从开槽长度考虑加工方便，从木板长度考虑用材最少。而它们之间又是相互制约，我们需要确定最优设计加工参数，可以建立非线性规划模型，用lingo软件来求解最优设计加工参数（平板尺寸、钢筋位置、开槽长度等），这里以合力的方向（斜向上）与最长木条（桌腿）的夹角方向最小为目标函数，以木条所承受应力小于木条的许用应力、支撑面积大于桌面面积、木条的开槽长度小于木条本身长为约束条件。
-
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\textwidth]{1.png}
+\caption{问题三流程图}
+\end{figure}
 \subsection{问题三分析}
 题目要求制作软件的意思就是客户给定折叠桌高度、桌面边缘线的形状大小和桌脚边缘线的大致形状，将这些信息输入程序就得到客户想要的桌子。我们在求解最优设计加工参数时，自行给定桌面边缘线形状（椭圆、相交圆等），桌脚边缘线形状，折叠桌高度，应用第二问的非线性规划模型，用MATLAB软件绘制折叠桌截面图，得到自己设计的创意平板折叠桌。
 
-问题三流程图：
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{1.png}
-\caption{问题三流程图}
-\end{figure}
 
-%参考文献
-\begin{thebibliography}{9}%宽度9
- \bibitem{bib:one} ....
- \bibitem{bib:two} ....
-\end{thebibliography}
+
+%参考文献   手工录入
+%\begin{thebibliography}{9}%宽度9
+% \bibitem{bib:one} ....
+% \bibitem{bib:two} ....
+%\end{thebibliography}
+
+%采用bibtex方案
+\cite{mittelbach_latex_2004,wright_latex3_2009,beeton_unicode_2008,vieth_experiences_2009}
+
+\bibliographystyle{gmcm}
+\bibliography{example}
+
 
 \newpage
 %附录
 \appendix
+%\setcounter{page}{1} %如果需要可以自行重置页码。
 \section{我的 MATLAB 源程序}
 \begin{lstlisting}[language=Matlab]%设置不同语言即可。
 kk=2;[mdd,ndd]=size(dd);
