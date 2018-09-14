@@ -399,7 +399,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\gmcm@cap@proof}{证明}
 \newcommand*{\gmcm@cap@solution}{解}
  %%%  中文标题名称
-\newcommand*{\gmcm@cap@abstractname}{摘\qquad\quad 要： }
+\newcommand*{\gmcm@cap@abstractname}{摘\qquad\quad 要}
  %%%  中文关键字
 \newcommand*{\gmcm@cap@keywordsname}{关键字}
 
