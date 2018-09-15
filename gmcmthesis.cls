@@ -341,10 +341,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %% 定义摘要环境
 \renewenvironment{abstract}{%
 \if@twocolumn
-		\section*{\abstractname}%
+		\section*{\gmcm@cap@abstractname}%
 	\else
 	 \begin{center}%
-	{\zihao{3}\lishu\abstractname\vspace{\z@}}%
+	{\zihao{3}\lishu\gmcm@cap@abstractname\vspace{\z@}}%
 	 \end{center}%
  	 \quotation
 	\fi}
