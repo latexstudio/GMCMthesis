@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{gmcmthesis}
               [2018/09/11 v2.3 update  gmcmthesis by  latexstudio.net]
-%% Inital Code 
+%% Inital Code
 \newif\if@gmcm@bwprint\@gmcm@bwprintfalse
 \newif\if@gmcm@preface\@gmcm@prefacetrue
 % tokens definition
@@ -19,7 +19,7 @@
 \newcommand*\gmcm@tokens@dayinput{}
 %%%% 编号专用页
 % 没有
-%% Declaration of Options 
+%% Declaration of Options
 \DeclareOption{colorprint}{\@gmcm@bwprintfalse}
 \DeclareOption{bwprint}{\@gmcm@bwprinttrue}
 \DeclareOption{withoutpreface}{\@gmcm@prefacefalse}
@@ -46,7 +46,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 设置颜色
 \RequirePackage{xcolor}
 % 插入图片
-\RequirePackage{graphicx} 
+\RequirePackage{graphicx}
 % 表格
 \RequirePackage{tabularx,array}
 %% 长表格
@@ -93,7 +93,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{caption}
 % 定制列表环境
 \RequirePackage{enumitem}
-% 下划线 
+% 下划线
 \RequirePackage{ulem}
 % 尺寸计算
 \RequirePackage{calc}
@@ -111,7 +111,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{hyperref}
 %% Document Layout
 % 页面布局
-\geometry{top=30.0mm,bottom=25.0mm,left=31.7mm,right=31.7mm,headsep=8mm}
+\geometry{top=30.0mm,bottom=25.0mm,left=22.5mm,right=22.5mm,headsep=8mm}
 \renewcommand*{\baselinestretch}{1.38}
 % 修改tabular 环境, 设置表格中的行间距为正文行间距.
 \let\gmcm@oldtabular\tabular
@@ -138,10 +138,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \else
   %% Do this if it is defined
 \fi
-\newcommand*{\xinwei}{\CJKfamily{xw}} 
+\newcommand*{\xinwei}{\CJKfamily{xw}}
 %\newcommand*{\lishu}{\CJKfamily{zhli}}
 
- 
+
 % 数学环境, 定理等设置
 \newtheorem{definition}{\gmcm@cap@definition}
 \newtheorem{theorem}{\gmcm@cap@theorem}
@@ -261,14 +261,14 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \thispagestyle{empty}%
  \begin{center}
  {\includegraphics{logo}}
- 
-  \vskip2.75cm
+
+  \vskip2cm
  {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
  \end{center}
- 
+
  \vskip2em
- 
- % \thispagestyle{gmcmheadings} 
+
+ % \thispagestyle{gmcmheadings}
    \renewcommand\arraystretch{1.3}
  \noindent \begin{tabularx}{\textwidth}{lX}
   \zihao{-2}\bfseries 学\qquad 校&\zihao{-2}\bfseries\gmcm@tokens@schoolname\\
@@ -288,15 +288,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \def\makenametitle{
 \newpage
 \setcounter{page}{1}
-\vspace*{2.3cm}
 \begin{center}
 %{\includegraphics[width=4cm]{logo}}
-
-\vskip.5\baselineskip%
 {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
 \end{center}
 
-\vskip1.6cm%
+\vskip0.6cm%
 
 \begin{center}\begin{tabularx}{.95\textwidth}{@{}lX@{}}
 {\zihao{4} 题\qquad 目} &\hfill\zihao{3}\heiti \@title\hfill\null\\
@@ -369,7 +366,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 	\setcounter{section}{0}%
 	 \setcounter{subsection}{0}%
 	\gdef\thesection{\appendixname\@Alph\c@section}}		
- 
+
 \newcommand*\baominghao[1]{%
 	\renewcommand{\gmcm@tokens@baominghao}{#1}}
 \newcommand*\schoolname[1]{%
@@ -384,7 +381,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Initialization 
+%% Initialization
  %%%数学定理相关的常量
 \newcommand*{\gmcm@cap@definition}{定义}
 \newcommand*{\gmcm@cap@theorem}{定理}
@@ -409,7 +406,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand\gmcm@ges@string@contents{\includegraphics{title}}
 
 
- 
+
 
 %设置目录格式
 % 节的目录格式
@@ -424,7 +421,3 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 \pagestyle{plain}
 \endinput
-
-
-
-
