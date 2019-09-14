@@ -19,7 +19,9 @@ GMCMthesis 是为全国研究生数学建模竞赛编写的 LaTeX 模板, 旨在
 
 视频教程试看的话，请点击：[试看地址](http://v.xue.taobao.com/learn.htm?spm=2013.1.0.0.kx3j3X&courseId=26740).
 
-![](https://github.com/latexstudio/GMCMthesis/blob/master/gmcmthesis.png)
+![](https://github.com/latexstudio/GMCMthesis/blob/master/example_1.png)
+
+![](https://github.com/latexstudio/GMCMthesis/blob/master/example_2.png)
 
 ## 更新记录
 
