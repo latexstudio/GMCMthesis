@@ -7,6 +7,14 @@ GMCMthesis 是为全国研究生数学建模竞赛编写的 LaTeX 模板, 旨在
 定的 LaTeX 的使用经验, 至少要会使用 ctex 宏包的一些功能, 比如调节字距或修改字体
 大小等等.
 
+2019 年大学生建模模板的免费视频教程发布了，两个模板比较一脉相承，有兴趣用户可以观瞻观瞻：
+
+第一部分：
+[https://www.bilibili.com/video/av64191560](https://www.bilibili.com/video/av64191560)
+
+第二部分：
+[https://www.bilibili.com/video/av64221508](https://www.bilibili.com/video/av64221508)
+
 另外, 欢迎大家购买我们的视频教程, 参看[这里](https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-3473795048.2.ZlPoPL&id=43823508044). 
 
 视频教程试看的话，请点击：[试看地址](http://v.xue.taobao.com/learn.htm?spm=2013.1.0.0.kx3j3X&courseId=26740).
