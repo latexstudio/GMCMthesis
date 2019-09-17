@@ -117,29 +117,115 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \let\gmcm@oldtabular\tabular
 \let\gmcm@endoldtabular\endtabular
 \renewenvironment{tabular}%
-	{\bgroup%
-	\renewcommand{\arraystretch}{1.38}%
-	\gmcm@oldtabular}%
-	{\gmcm@endoldtabular\egroup}
+  {\bgroup%
+  \renewcommand{\arraystretch}{1.38}%
+  \gmcm@oldtabular}%
+  {\gmcm@endoldtabular\egroup}
 % 每行缩进两个汉字
 \setlength\parindent{2em}
 % 设置字体
-\setmainfont{Times New Roman}
-\setmonofont{Courier New}
-\setsansfont{Arial}
-\setCJKmainfont[AutoFakeBold = {2.15},ItalicFont={[simkai.ttf]}]{SimSun}
-\setCJKfamilyfont{xw}{STXinwei}
+\newif\ifmcm@mac
+\newif\ifmcm@windows
+\newif\ifmcm@fandol
 
-%
-%\setCJKfamilyfont{zhyou}{YouYuan}
-\ifx\lishu\undefined%
- \setCJKfamilyfont{zhli}{LiSu}
- \newcommand*{\lishu}{\CJKfamily{zhli}} %% Do this if it is undefined
+\@ifclasslater{ctexart}{2015/05/06}{
+  \newcommand\mcm@strifeq{\csname str_if_eq_x:nnTF\endcsname}
+  \newcommand\mcm@fontset{\csname g__ctex_fontset_tl\endcsname}
+  \mcm@strifeq{\mcm@fontset}{mac}{\mcm@mactrue}{}
+  \mcm@strifeq{\mcm@fontset}{windows}{\mcm@windowstrue}{}
+  \mcm@strifeq{\mcm@fontset}{fandol}{\mcm@fandoltrue}{}
+}{
+  \mcm@windowstrue
+}
+
+\ifmcm@fandol
+  \setmainfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyretermes}
+  \setsansfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmonofont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
+  ]{texgyrecursor}
 \else
-  %% Do this if it is defined
+  \setmainfont{Times New Roman}
+  \setsansfont{Arial}
+  \ifmcm@mac
+    \setmonofont[Scale=MatchLowercase]{Menlo}
+  \else
+    \setmonofont[Scale=MatchLowercase]{Courier New}
+  \fi
+\fi
+
+\ifmcm@mac
+  \setCJKmainfont[
+       UprightFont = * Light,
+          BoldFont = * Bold,
+        ItalicFont = Kaiti SC,
+    BoldItalicFont = Kaiti SC Bold,
+  ]{Songti SC}
+  \setCJKsansfont{Heiti SC}
+  \setCJKfamilyfont{zhsong}[
+       UprightFont = * Light,
+          BoldFont = * Bold,
+  ]{Songti SC}
+  \setCJKfamilyfont{zhhei}{Heiti SC}
+  \setCJKfamilyfont{zhkai}{Kaiti SC}
+  \setCJKfamilyfont{zhli}{Baoli SC}
+  \newcommand*\lishu{\CJKfamily{zhli}}
+\else
+  \ifmcm@windows
+    \IfFileExists{C:/bootfont.bin}{
+      \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=KaiTi_GB2312]{SimSun}
+      \setCJKfamilyfont{zhkai}[AutoFakeBold=2.15]{KaiTi_GB2312}
+    }{
+      \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=KaiTi]{SimSun}
+      \setCJKfamilyfont{zhkai}[AutoFakeBold=2.15]{KaiTi}
+    }
+    \setCJKsansfont[AutoFakeBold=2.15]{SimHei}
+    \setCJKfamilyfont{zhsong}[AutoFakeBold=2.15]{SimSun}
+    \setCJKfamilyfont{zhhei}[AutoFakeBold=2.15]{SimHei}
+    \ifx\lishu\undefined%
+      \setCJKfamilyfont{zhli}{LiSu}
+      \newcommand*\lishu{\CJKfamily{zhli}} %% Do this if it is undefined
+    \fi
+  \else
+    \ifmcm@fandol
+      % \setCJKfamilyfont{zhli}{LiSu} % 需要隶书字体 最好更换其他相似字体
+      % \newcommand*\lishu{\CJKfamily{zhli}}
+      \providecommand{\lishu}{\kaishu}
+      \PackageWarning{heavenlyclouds}{用楷书代替隶书}
+    \fi
+  \fi
+\fi
+
+\ifmcm@windows
+  \setCJKfamilyfont{xw}{STXinwei}
+\else
+  \ifmcm@mac
+    \setCJKfamilyfont{xw}{Weibei SC}
+  \fi
+  \ifmcm@fandol
+    % \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
+    \providecommand{\lishu}{\kaishu}
+    \PackageWarning{heavenlyclouds}{用楷书代替华文新魏}
+  \fi
 \fi
 \newcommand*{\xinwei}{\CJKfamily{xw}}
-%\newcommand*{\lishu}{\CJKfamily{zhli}}
 
 
 % 数学环境, 定理等设置
@@ -180,41 +266,41 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{minusfour}{\zihao{-4}}
 \captionsetup[figure]{%
-	format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
-	labelsep=quad, % 分隔符是一个空格
-	font={song,minusfour,bf}, % 图的字体, 宋体小四
-	position=bottom % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
+  format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
+  labelsep=quad, % 分隔符是一个空格
+  font={song,minusfour,bf}, % 图的字体, 宋体小四
+  position=bottom % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
 }
 \captionsetup[table]{%
-	format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
-	labelsep=quad, % 分隔符是一个空格
-	font={song,minusfour,bf}, % 表的字体, 宋体小四
-	position=top % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
+  format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
+  labelsep=quad, % 分隔符是一个空格
+  font={song,minusfour,bf}, % 表的字体, 宋体小四
+  position=top % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
 }
 % 列表环境设置
 \setlist{%
-	topsep=0.3em, % 列表顶端的垂直空白
-	partopsep=0pt, % 列表环境前面紧接着一个空白行时其顶端的额外垂直空白
-	itemsep=0ex plus 0.1ex, % 列表项之间的额外垂直空白
-	parsep=0pt, % 列表项内的段落之间的垂直空白
-	leftmargin=1.5em, % 环境的左边界和列表之间的水平距离
-	rightmargin=0em, % 环境的右边界和列表之间的水平距离
-	labelsep=0.5em, % 包含标签的盒子与列表项的第一行文本之间的间隔
-	labelwidth=2em % 包含标签的盒子的正常宽度；若实际宽度更宽，则使用实际宽度。
+  topsep=0.3em, % 列表顶端的垂直空白
+  partopsep=0pt, % 列表环境前面紧接着一个空白行时其顶端的额外垂直空白
+  itemsep=0ex plus 0.1ex, % 列表项之间的额外垂直空白
+  parsep=0pt, % 列表项内的段落之间的垂直空白
+  leftmargin=1.5em, % 环境的左边界和列表之间的水平距离
+  rightmargin=0em, % 环境的右边界和列表之间的水平距离
+  labelsep=0.5em, % 包含标签的盒子与列表项的第一行文本之间的间隔
+  labelwidth=2em % 包含标签的盒子的正常宽度；若实际宽度更宽，则使用实际宽度。
 }
 
 % 超链接
 % \AtBeginDocument{%
-	 \hypersetup{%
-		% % unicode=false, % hyperref 和 xetex 同时使用时不能开启 Unicode 选项.
-		 hyperfootnotes=true,
-		 hyperindex=true,
-		 colorlinks=true,
-		 bookmarksnumbered=true,
-		 bookmarksopen=true,
- 		 bookmarksopenlevel=0,
-		 allcolors=black,
-		 breaklinks=true}%
+   \hypersetup{%
+    % % unicode=false, % hyperref 和 xetex 同时使用时不能开启 Unicode 选项.
+     hyperfootnotes=true,
+     hyperindex=true,
+     colorlinks=true,
+     bookmarksnumbered=true,
+     bookmarksopen=true,
+      bookmarksopenlevel=0,
+     allcolors=black,
+     breaklinks=true}%
 % }
 % \if@gmcm@bwprint
 % \AtBeginDocument{\hypersetup{hidelinks}}
@@ -236,7 +322,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 生成封面, 使用\maketitle
 \renewcommand{\maketitle}{\par
-	\begingroup
+  \begingroup
       \newpage
       \global\@topnum\z@ % Prevents figures from going at top of page.
       \ge@maketitle      %
@@ -277,13 +363,13 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \hline\\[-15pt]
    \multirow{3}{*}{\zihao{-2}\bfseries 队员姓名}&\zihao{-2}\bfseries	 1. \gmcm@tokens@membera\hfill\null\\
    \cline{2-2}\\[-15pt]
-   	                           &\zihao{-2}\bfseries 2. \gmcm@tokens@memberb\hfill\null\\
+                                &\zihao{-2}\bfseries 2. \gmcm@tokens@memberb\hfill\null\\
    \cline{2-2}\\[-15pt]
-		                    &\zihao{-2}\bfseries 3.  \gmcm@tokens@memberc\hfill\null\\
+                        &\zihao{-2}\bfseries 3.  \gmcm@tokens@memberc\hfill\null\\
    \hline
   \end{tabularx}
-	\makenametitle
-	}
+  \makenametitle
+  }
 
 \def\makenametitle{
 \newpage
@@ -312,25 +398,25 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
 \renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
- 	{2.5ex \@plus -1ex \@minus -.2ex}%
-	{2.3ex \@plus.2ex}%
-	{\bfseries\centering\zihao{4}\heiti}}
+   {2.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\bfseries\centering\zihao{4}\heiti}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-	{1.25ex\@plus -1ex \@minus -.2ex}%
-	{1.25ex \@plus .2ex}%
-	{\normalfont\normalsize\bfseries}}
+  {1.25ex\@plus -1ex \@minus -.2ex}%
+  {1.25ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-	{1.25ex\@plus -1ex \@minus -.2ex}%
-	{1.2ex \@plus .2ex}%
-	{\normalfont\normalsize\bfseries}}
+  {1.25ex\@plus -1ex \@minus -.2ex}%
+  {1.2ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-	{3.25ex \@plus1ex \@minus.2ex}%
-	{-1em}%
-	{\normalfont\normalsize\bfseries}}
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
 \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
-	 {3.25ex \@plus1ex \@minus .2ex}%
-	 {-1em}%
-	 {\normalfont\normalsize\bfseries}}
+   {3.25ex \@plus1ex \@minus .2ex}%
+   {-1em}%
+   {\normalfont\normalsize\bfseries}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Define new environment and command
@@ -338,45 +424,45 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %% 定义摘要环境
 \renewenvironment{abstract}{%
 \if@twocolumn
-		\section*{\gmcm@cap@abstractname}%
-	\else
-	 \begin{center}%
-	{\zihao{3}\lishu\gmcm@cap@abstractname\vspace{\z@}}%
-	 \end{center}%
- 	 \quotation
-	\fi}
-	{\if@twocolumn\else\endquotation\newpage\null\fi}
+    \section*{\gmcm@cap@abstractname}%
+  \else
+   \begin{center}%
+  {\zihao{3}\lishu\gmcm@cap@abstractname\vspace{\z@}}%
+   \end{center}%
+    \quotation
+  \fi}
+  {\if@twocolumn\else\endquotation\newpage\null\fi}
 \renewenvironment{quotation}
-	{\list{}{\listparindent 2em%
-	 \itemindent \listparindent
-	 \rightmargin\z@
-	 \leftmargin\z@
-	 \parsep \z@ \@plus\p@}%
-	\item\relax}
-	{\endlist}
+  {\list{}{\listparindent 2em%
+   \itemindent \listparindent
+   \rightmargin\z@
+   \leftmargin\z@
+   \parsep \z@ \@plus\p@}%
+  \item\relax}
+  {\endlist}
 
 \newcommand\keywords[1]{%
-	\renewcommand{\gmcm@tokens@keywords}{#1}
-	\par
-	\vskip1ex
-	{\noindent\zihao{-4}\heiti\gmcm@cap@keywordsname：}~{\gmcm@tokens@keywords}
-	}
-% 定义附录	
+  \renewcommand{\gmcm@tokens@keywords}{#1}
+  \par
+  \vskip1ex
+  {\noindent\zihao{-4}\heiti\gmcm@cap@keywordsname：}~{\gmcm@tokens@keywords}
+  }
+% 定义附录
 \renewcommand\appendix{\par
-	\setcounter{section}{0}%
-	 \setcounter{subsection}{0}%
-	\gdef\thesection{\appendixname\@Alph\c@section}}		
+  \setcounter{section}{0}%
+   \setcounter{subsection}{0}%
+  \gdef\thesection{\appendixname\@Alph\c@section}}
 
 \newcommand*\baominghao[1]{%
-	\renewcommand{\gmcm@tokens@baominghao}{#1}}
+  \renewcommand{\gmcm@tokens@baominghao}{#1}}
 \newcommand*\schoolname[1]{%
-	\renewcommand{\gmcm@tokens@schoolname}{#1}}
+  \renewcommand{\gmcm@tokens@schoolname}{#1}}
 \newcommand*\membera[1]{%
-	\renewcommand{\gmcm@tokens@membera}{#1}}
+  \renewcommand{\gmcm@tokens@membera}{#1}}
 \newcommand*\memberb[1]{%
-	\renewcommand{\gmcm@tokens@memberb}{#1}}
+  \renewcommand{\gmcm@tokens@memberb}{#1}}
 \newcommand*\memberc[1]{%
-	\renewcommand{\gmcm@tokens@memberc}{#1}}
+  \renewcommand{\gmcm@tokens@memberc}{#1}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
