@@ -205,8 +205,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \fi
   \else
     \ifmcm@fandol
-      \setCJKfamilyfont{zhli}{LiSu} % 需要隶书字体 最好更换其他相似字体
-      \newcommand*\lishu{\CJKfamily{zhli}}
+      % \setCJKfamilyfont{zhli}{LiSu} % 需要隶书字体 最好更换其他相似字体
+      % \newcommand*\lishu{\CJKfamily{zhli}}
+      \providecommand{\lishu}{\kaishu}
+      \PackageWarning{heavenlyclouds}{用楷书代替隶书}
     \fi
   \fi
 \fi
@@ -218,7 +220,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
     \setCJKfamilyfont{xw}{Weibei SC}
   \fi
   \ifmcm@fandol
-    \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
+    % \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
+    \providecommand{\lishu}{\kaishu}
+    \PackageWarning{heavenlyclouds}{用楷书代替华文新魏}
   \fi
 \fi
 \newcommand*{\xinwei}{\CJKfamily{xw}}
