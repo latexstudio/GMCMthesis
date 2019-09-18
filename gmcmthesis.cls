@@ -213,19 +213,19 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \fi
 \fi
 
-\ifmcm@windows
-  \setCJKfamilyfont{xw}{STXinwei}
-\else
-  \ifmcm@mac
-    \setCJKfamilyfont{xw}{Weibei SC}
-  \fi
-  \ifmcm@fandol
-    % \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
-    \providecommand{\lishu}{\kaishu}
-    \PackageWarning{heavenlyclouds}{用楷书代替华文新魏}
-  \fi
-\fi
-\newcommand*{\xinwei}{\CJKfamily{xw}}
+% \ifmcm@windows
+%   \setCJKfamilyfont{xw}{STXinwei}
+%   \newcommand*{\xinwei}{\CJKfamily{xw}}
+% \else
+%   \ifmcm@mac
+%     \setCJKfamilyfont{xw}{Weibei SC}
+%   \fi
+%   \ifmcm@fandol
+%     % \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
+%     \providecommand{\xinwei}{\kaishu}
+%     \PackageWarning{heavenlyclouds}{用楷书代替华文新魏}
+%   \fi
+% \fi
 
 
 % 数学环境, 定理等设置
@@ -349,7 +349,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
  {\includegraphics{logo}}
 
   \vskip2cm
- {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+%  {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+{\zihao{2} \gmcm@ges@string@contents \par}
  \end{center}
 
  \vskip2em
@@ -376,7 +377,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setcounter{page}{1}
 \begin{center}
 %{\includegraphics[width=4cm]{logo}}
-{\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+% {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+{\zihao{2} \gmcm@ges@string@contents \par}
 \end{center}
 
 \vskip0.6cm%
