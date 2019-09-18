@@ -128,7 +128,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setmonofont{Courier New}
 \setsansfont{Arial}
 \setCJKmainfont[AutoFakeBold = {2.15},ItalicFont={[simkai.ttf]}]{SimSun}
-\setCJKfamilyfont{xw}{STXinwei}
+%\setCJKfamilyfont{xw}{STXinwei}
 
 %
 %\setCJKfamilyfont{zhyou}{YouYuan}
@@ -138,7 +138,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \else
   %% Do this if it is defined
 \fi
-\newcommand*{\xinwei}{\CJKfamily{xw}}
+%\newcommand*{\xinwei}{\CJKfamily{xw}}
 %\newcommand*{\lishu}{\CJKfamily{zhli}}
 
 
@@ -263,7 +263,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
  {\includegraphics{logo}}
 
   \vskip2cm
- {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+ {\zihao{2} \gmcm@ges@string@contents \par}
  \end{center}
 
  \vskip2em
@@ -290,7 +290,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setcounter{page}{1}
 \begin{center}
 %{\includegraphics[width=4cm]{logo}}
-{\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+{\zihao{2} \gmcm@ges@string@contents \par}
 \end{center}
 
 \vskip0.6cm%
