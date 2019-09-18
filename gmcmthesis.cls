@@ -124,22 +124,109 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 每行缩进两个汉字
 \setlength\parindent{2em}
 % 设置字体
-\setmainfont{Times New Roman}
-\setmonofont{Courier New}
-\setsansfont{Arial}
-\setCJKmainfont[AutoFakeBold = {2.15},ItalicFont={[simkai.ttf]}]{SimSun}
-%\setCJKfamilyfont{xw}{STXinwei}
+% 代码来自https://github.com/OsbertWang/GMCMthesis 这个是OsbertWang，修正支持让各个系统自适应支持近似字体。
+\newif\ifmcm@mac
+\newif\ifmcm@windows
+\newif\ifmcm@fandol
 
-%
-%\setCJKfamilyfont{zhyou}{YouYuan}
-\ifx\lishu\undefined%
- \setCJKfamilyfont{zhli}{LiSu}
- \newcommand*{\lishu}{\CJKfamily{zhli}} %% Do this if it is undefined
+\@ifclasslater{ctexart}{2015/05/06}{
+  \newcommand\mcm@strifeq{\csname str_if_eq_x:nnTF\endcsname}
+  \newcommand\mcm@fontset{\csname g__ctex_fontset_tl\endcsname}
+  \mcm@strifeq{\mcm@fontset}{mac}{\mcm@mactrue}{}
+  \mcm@strifeq{\mcm@fontset}{windows}{\mcm@windowstrue}{}
+  \mcm@strifeq{\mcm@fontset}{fandol}{\mcm@fandoltrue}{}
+}{
+  \mcm@windowstrue
+}
+
+\ifmcm@fandol
+  \setmainfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyretermes}
+  \setsansfont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+  ]{texgyreheros}
+  \setmonofont[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Scale          = MatchLowercase,
+  ]{texgyrecursor}
 \else
-  %% Do this if it is defined
+  \setmainfont{Times New Roman}
+  \setsansfont{Arial}
+  \ifmcm@mac
+    \setmonofont[Scale=MatchLowercase]{Menlo}
+  \else
+    \setmonofont[Scale=MatchLowercase]{Courier New}
+  \fi
 \fi
-%\newcommand*{\xinwei}{\CJKfamily{xw}}
-%\newcommand*{\lishu}{\CJKfamily{zhli}}
+
+\ifmcm@mac
+  \setCJKmainfont[
+       UprightFont = * Light,
+          BoldFont = * Bold,
+        ItalicFont = Kaiti SC,
+    BoldItalicFont = Kaiti SC Bold,
+  ]{Songti SC}
+  \setCJKsansfont{Heiti SC}
+  \setCJKfamilyfont{zhsong}[
+       UprightFont = * Light,
+          BoldFont = * Bold,
+  ]{Songti SC}
+  \setCJKfamilyfont{zhhei}{Heiti SC}
+  \setCJKfamilyfont{zhkai}{Kaiti SC}
+  \setCJKfamilyfont{zhli}{Baoli SC}
+  \newcommand*\lishu{\CJKfamily{zhli}}
+\else
+  \ifmcm@windows
+    \IfFileExists{C:/bootfont.bin}{
+      \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=KaiTi_GB2312]{SimSun}
+      \setCJKfamilyfont{zhkai}[AutoFakeBold=2.15]{KaiTi_GB2312}
+    }{
+      \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=KaiTi]{SimSun}
+      \setCJKfamilyfont{zhkai}[AutoFakeBold=2.15]{KaiTi}
+    }
+    \setCJKsansfont[AutoFakeBold=2.15]{SimHei}
+    \setCJKfamilyfont{zhsong}[AutoFakeBold=2.15]{SimSun}
+    \setCJKfamilyfont{zhhei}[AutoFakeBold=2.15]{SimHei}
+    \ifx\lishu\undefined%
+      \setCJKfamilyfont{zhli}{LiSu}
+      \newcommand*\lishu{\CJKfamily{zhli}} %% Do this if it is undefined
+    \fi
+  \else
+    \ifmcm@fandol
+      % \setCJKfamilyfont{zhli}{LiSu} % 需要隶书字体 最好更换其他相似字体
+      % \newcommand*\lishu{\CJKfamily{zhli}}
+      \providecommand{\lishu}{\kaishu}
+      \PackageWarning{heavenlyclouds}{用楷书代替隶书}
+    \fi
+  \fi
+\fi
+
+% \ifmcm@windows
+%   \setCJKfamilyfont{xw}{STXinwei}
+%   \newcommand*{\xinwei}{\CJKfamily{xw}}
+% \else
+%   \ifmcm@mac
+%     \setCJKfamilyfont{xw}{Weibei SC}
+%   \fi
+%   \ifmcm@fandol
+%     % \setCJKfamilyfont{xw}{STXinwei} % 需要安装华文新魏字体 最好更换其他相似字体
+%     \providecommand{\xinwei}{\kaishu}
+%     \PackageWarning{heavenlyclouds}{用楷书代替华文新魏}
+%   \fi
+% \fi
 
 
 % 数学环境, 定理等设置
