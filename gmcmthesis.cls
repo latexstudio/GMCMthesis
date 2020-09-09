@@ -129,8 +129,19 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newif\ifmcm@windows
 \newif\ifmcm@fandol
 
+
 \@ifclasslater{ctexart}{2015/05/06}{
-  \newcommand\mcm@strifeq{\csname str_if_eq_x:nnTF\endcsname}
+  %\newcommand\mcm@strifeq{\csname str_if_eq_x:nnTF\endcsname}
+  %修订错误来自：https://github.com/ustctug/ustcthesis/issues/241
+  \newcommand\mcm@strifeq[4]{%
+  \edef\ustc@tmp@a{#1}%
+  \edef\ustc@tmp@b{#2}%
+  \ifx\ustc@tmp@a\ustc@tmp@b
+    #3%
+  \else
+    #4%
+  \fi
+}
   \newcommand\mcm@fontset{\csname g__ctex_fontset_tl\endcsname}
   \mcm@strifeq{\mcm@fontset}{mac}{\mcm@mactrue}{}
   \mcm@strifeq{\mcm@fontset}{windows}{\mcm@windowstrue}{}
@@ -359,7 +370,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
    \renewcommand\arraystretch{1.3}
  \noindent \begin{tabularx}{\textwidth}{lX}
   \zihao{-2}\bfseries 学\qquad 校&\zihao{-2}\bfseries\gmcm@tokens@schoolname\\
-  \hline\\[-15pt]
+  \hline\\[-5pt]
   \zihao{-2}\bfseries 参赛队号&\zihao{-2}\bfseries\gmcm@tokens@baominghao\\
   \hline\\[-15pt]
    \multirow{3}{*}{\zihao{-2}\bfseries 队员姓名}&\zihao{-2}\bfseries	 1. \gmcm@tokens@membera\hfill\null\\
