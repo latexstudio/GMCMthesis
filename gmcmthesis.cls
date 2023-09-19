@@ -358,7 +358,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \def\thepage{0}
   \thispagestyle{empty}%
  \begin{center}
- {\includegraphics{logo}}
+ {\includegraphics[width=\linewidth]{logo}}
 
   \vskip2cm
  {\zihao{2} \gmcm@ges@string@contents \par}
