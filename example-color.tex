@@ -1,9 +1,16 @@
 % !Mode:: "TeX:UTF-8"
 %!TEX program  = xelatex
 
-\documentclass[bwprint]{gmcmthesis}
-%\documentclass[bwprint,fontset=fandol]{gmcmthesis} % Overleaf 等在线平台需要用这一行。
+\documentclass[bwprint,fontset=windows]{gmcmthesis}
+
+\hypersetup{hidelinks}
 \usepackage[framemethod=TikZ]{mdframed}
+
+%\usepackage{fontspec}  % for Consolas & Courier New
+%\lstset{basicstyle=\small\fontspec{Consolas}}
+%\lstset{basicstyle=\small\fontspec{Courier New}}
+%\setmonofont{Consolas}
+%\setcounter{tocdepth}{3}   % 调整目录深度
 
 \usepackage{subfig}
 \usepackage{colortbl}
@@ -29,13 +36,18 @@
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 
 
+%===================== 建模论文题目 ======================
 
 \title{全国研究生数学建模竞赛论文标题}
-\baominghao{4321} %参赛队号
-\schoolname{XX大学}%学校名称
-\membera{小米} %队员A
-\memberb{向左} %队员B
-\memberc{哈哈} %队员C
+\baominghao{\hspace{6em} 20230900001} %参赛队号
+\schoolname{\hspace{5.8em} 学校名称填写} %学校名称
+\membera{\hspace{6em} 成员A} %队员A
+\memberb{\hspace{6em} 成员B} %队员B
+\memberc{\hspace{6em} 成员C} %队员C
+
+%=======================================================
+
+
 \begin{document}
 
  %生成标题
@@ -47,8 +59,7 @@
 论文的内容写作, 而不用花费过多精力在格式的定制和调整上. 本手册是相应的参考, 其
 中提供了一些环境和命令可以让模板的使用更为方便. 同时需要注意, 使用者需要有一
 定的 \LaTeX{} 的使用经验, 至少要会使用 ctex 宏包的一些功能, 比如调节字距或修改字体
-大小等等. 不少用户把模板上传到 Overleaf 上使用, 由于字体设置无法直接上传, 如果上传了会有字体异常, 请自行修改. 
-
+大小等等.
 
  \begin{mdframed} [%
 	roundcorner=5pt,
@@ -73,13 +84,16 @@ frametitlerulewidth=.5pt, frametitlebackgroundcolor=gray!2,]
 欢迎大家到QQ群里沟通交流：91940767/478023327/640633524。我们也开通了问答区交流 \LaTeX{}技术：\url{https://ask.latexstudio.net}，欢迎大家前来交流。
 
 
-\keywords{模板\quad  \LaTeX{}\quad   数学建模}
+\keywords{折叠桌\quad  曲线拟合\quad   非线性优化模型\quad  受力分析}
+
 \end{abstract}
 
 \pagestyle{plain}
 
 %目录 不推荐加
-%\tableofcontents
+\maketoc
+
+\clearpage
 
 \section{在线使用}
 
@@ -151,6 +165,7 @@ frametitlerulewidth=.5pt, frametitlebackgroundcolor=gray!2,]
 
 \section{符号说明}
 
+
 \begin{table}[htp!]
 \centering
 \renewcommand\arraystretch{1.2} %定义表格高度
@@ -158,37 +173,44 @@ frametitlerulewidth=.5pt, frametitlebackgroundcolor=gray!2,]
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{C}{>{\centering \arraybackslash}X}
 \newcolumntype{R}{>{\raggedright \arraybackslash}X}
-\begin{tabularx}{0.9\textwidth}{|P{1cm}|L|}
-  \hline %\toprule
-  符号    &   \quad 意义 \\
-  \hline %\midrule
+\begin{tabularx}{0.9\textwidth}{!{\color{color2}\vrule}P{2cm}!{\color{color2}\vrule}L!{\color{color2}\vrule}}
+  \arrayrulecolor{color2}\hline %\toprule
+  \rowcolor{color2}
+  \textbf{符号}    &   \quad \textbf{意义} \\
+  \arrayrulecolor{color2}\hline %\midrule
   %\rowcolor[gray]{0.90}
+  \rowcolor{color3}
   $ a $  &  符号1的意义    \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color4}
   $ b $  &  符号2的意义    \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color3}
   $ c $  &  符号3的意义符号3的意义    \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color4}
   $ d $  &  符号4的意义    \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color3}
   $ e $  &  符号5的意义     \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color4}
   $ f $  &  符号6的意义符号6的意义    \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color3}
   $ g $  &  符号7的意义     \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color4}
   $ h $  &  符号8的意义     \\
-  \hline
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color3}
   $ i $  &  符号9的意义符号9的意义     \\
-  \hline
-
+  \arrayrulecolor{color2}\hline
+  \rowcolor{color4}
   $ k $  &  符号10的意义     \\
-  \hline
-  $ l $  &  符号11的意义    \\ 
-  \hline %\bottomrule
+  \arrayrulecolor{color2}\hline
 \end{tabularx}
 \end{table}
-
 
 %\begin{tabularx}{\textwidth-18pt}{XXX}
 %\hline
@@ -254,77 +276,51 @@ output result
 %\end{table}
 
 三线表
-
-%\begin{table}[!htp]
-%\renewcommand\arraystretch{1.0} %定义表格高度
-%\newcolumntype{L}{X}
-%\newcolumntype{C}{>{\centering \arraybackslash}X}
-%\newcolumntype{R}{>{\raggedright \arraybackslash}X}
-%\centering
-%\caption{某校学生升高体重样本}
-%\label{tab2:heightweight}
-%\begin{tabularx}{0.9\textwidth}{CC|CC}
-%   \toprule
-%	\multicolumn{2}{c}{Numbers} &身高&体重\\
-%	\midrule
-%	1&14&156&42\\
-%	2&16&158&45\\
-%	3&14&162&48\\
-%	4&15&163&50\\
-%    \midrule
-%    %\cmidrule{2-4}
-%	平均&15&159.75&46.25\\
-%	\bottomrule
-%\end{tabularx}
-%\end{table}
-
-
-
 \begin{table}[!htp]
-\renewcommand\arraystretch{1.0} %定义表格高度
 \newcolumntype{L}{X}
 \newcolumntype{C}{>{\centering \arraybackslash}X}
 \newcolumntype{R}{>{\raggedright \arraybackslash}X}
 \centering
 \caption{某校学生升高体重样本}
 \label{tab2:heightweight}
-\begin{tabularx}{0.9\textwidth}{|C|C|C|C|}
-   \Xhline{2\arrayrulewidth}
-	\multicolumn{2}{|c|}{Numbers}  &身高&体重\\
-	\Xhline{2\arrayrulewidth}
-	\multirow{2}{*}{Item} &14&156&42\\
-    \cline{2-4}
-	  &16&158&45\\
-    \hline
+\begin{tabularx}{0.9\textwidth}{CCCC}
+   \toprule
+	序号&年龄&身高&体重\\
+	\midrule
+	1&14&156&42\\
+	2&16&158&45\\
 	3&14&162&48\\
-    \hline
 	4&15&163&50\\
+    \midrule
     %\cmidrule{2-4}
 	平均&15&159.75&46.25\\
-	\Xhline{2\arrayrulewidth}
+	\bottomrule
 \end{tabularx}
 \end{table}
 
+模型建立的思路想好之后，采取了怎样的算法对模型进行了实现。前面建了几个模型，这里就有几个模型的求解。（如利用Matlab编程求解、用spss软件求解，利用拉普拉斯变换求解，用蒙特卡罗模拟求解等。特别是求解有难度的模型要介绍求解方法。）获得什么样的结果，可围绕题目要求综合给出关键结论，建议不要将问题所需结果全部给出，否则摘要显得太长。
+ 
 
-题目要求建立模型描述折叠桌的动态变化图，由于在折叠时用力大小的不同，我们不能描述在某一时刻折叠桌的具体形态，但我们可以用每根木条的角度变化来描述折叠桌的动态变化。首先，我们知道折叠桌前后左右对称，我们可以运用几何知识求出四分之一木条的角度变化。最后，根据初始时刻和最终形态两种状态求出桌腿木条开槽的长度。题目要求建立模型描述折叠桌的动态变化图，由于在折叠时用力大小的不同，我们不能描述在某一时刻折叠桌的具体形态，但我们可以用每根木条的角度变化来描述折叠桌的动态变化。首先，我们知道折叠桌前后左右对称，我们可以运用几何知识求出四分之一木条的角度变化。最后，根据初始时刻和最终形态两种状态求出桌腿木条开槽的长度。题目要求建立模型描述折叠桌的动态变化图，由于在折叠时用力大小的不同，我们不能描述在某一时刻折叠桌的具体形态，但我们可以用每根木条的角度变化来描述折叠桌的动态变化。首先，我们知道折叠桌前后左右对称，我们可以运用几何知识求出四分之一木条的角度变化。最后，根据初始时刻和最终形态两种状态求出桌腿木条开槽的长度题目要求建立模型描述折叠桌的动态变化图，由于在折叠时用力大小的不同，我们不能描述在某一时刻折叠桌的具体形态，但我们可以用每根木条的角度变化来描述折叠桌的动态变化。首先，我们知道折叠桌前后左右对称，我们可以运用几何知识求出四分之一木条的角度变化。最后，根据初始时刻和最终形态两种状态求出桌腿木条开槽的长度
+模型建立的思路想好之后，采取了怎样的算法对模型进行了实现。前面建了几个模型，这里就有几个模型的求解。（如利用Matlab编程求解、用spss软件求解，利用拉普拉斯变换求解，用蒙特卡罗模拟求解等。特别是求解有难度的模型要介绍求解方法。）获得什么样的结果，可围绕题目要求综合给出关键结论，建议不要将问题所需结果全部给出，否则摘要显得太长。
+ 
 
+
+模型建立的思路想好之后，采取了怎样的算法对模型进行了实现。前面建了几个模型，这里就有几个模型的求解。（如利用Matlab编程求解、用spss软件求解，利用拉普拉斯变换求解，用蒙特卡罗模拟求解等。特别是求解有难度的模型要介绍求解方法。）获得什么样的结果，可围绕题目要求综合给出关键结论，建议不要将问题所需结果全部给出，否则摘要显得太长。
+ 
 某行业产量与生产费用的数据
 \begin{table}[htp!]
 \centering
 \caption{某行业产量与生产费用的数据}%\label{}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{Z}{!{\vline}@{\color{white}\vrule width \doublerulesep}!{\vrule}}%自定义列格式(双线)
-\begin{tabularx}{0.94\textwidth}{c|c|YZc|c|Y}
-    \Xhline{0.9pt}
-	企业编号&	产量(台)&生产费用(万元)&企业编号&产量(台)&生产费用(万元)\\
-    \Xcline{1-3}{0.6pt}\Xcline{4-6}{0.6pt}
+\begin{tabularx}{0.94\textwidth}{c|c|YZc|c|Y}\Xhline{0.9pt}
+	企业编号&	产量(台)&生产费用(万元)&企业编号&产量(台)&生产费用(万元)\\\Xcline{1-3}{0.6pt}\Xcline{4-6}{0.6pt}
 	1&	40&	130&7&	84&	165\\
 	2&	42&	150&8&	100&	170\\
 	3&	50&	155&9&	116&	167\\
 	4&	55&	140&10&	125&	180\\
 	5&	65&	150&11&	130&	175\\
-	6&	78&	154&12&	140&	185\\
-    \Xhline{0.72pt}
+	6&	78&	154&12&	140&	185\\\Xhline{0.72pt}
 \end{tabularx}
 \end{table}
 
@@ -337,23 +333,39 @@ output result
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \begin{tabularx}{0.9\textwidth}{|Y|Y|Y|}
   \hline
+  \rowcolor{color1}
   数据集1  &  数据集1 & 数据集2  \\
  \hline
+  \rowcolor[gray]{0.95}
   A问题1   & A问题1 &  A问题1     \\
   \hline
+  \rowcolor[gray]{0.9}
   503   &  503     & 163     \\
+  \rowcolor[gray]{0.95}
   294   &  200     & 114      \\
+  \rowcolor[gray]{0.9}
   91    &  80      & 8     \\
+  \rowcolor[gray]{0.95}
   607   &  237     & 309      \\
+  \rowcolor[gray]{0.9}
   540   &  170     & 305    \\
+  \rowcolor[gray]{0.95}
   250   &  278     & 123    \\
+  \rowcolor[gray]{0.9}
   340   &  369     & 45      \\
+  \rowcolor[gray]{0.95}
   277   &  214     & 160    \\
+  \rowcolor[gray]{0.9}
   B     &  397     & 92    \\
+  \rowcolor[gray]{0.95}
         &  B       & 93    \\
+  \rowcolor[gray]{0.9}
         &          & 61        \\
+  \rowcolor[gray]{0.95}
         &          & 292       \\
+  \rowcolor[gray]{0.9}
         &          & B         \\
+  \rowcolor[gray]{0.95}
 104861  & 103518   & 109342 \\
 \hline
 \end{tabularx}
@@ -363,23 +375,39 @@ output result
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \begin{tabularx}{0.9\textwidth}{|Y|Y|Y|}
   \hline
+  \rowcolor{color1}
   数据集1  &  数据集1 & 数据集2  \\
   \hline
+  \rowcolor[gray]{0.95}
   A问题2  &  A问题2  & A问题2    \\
   \hline
+  \rowcolor[gray]{0.9}
    503    & 503     & 163  \\
+  \rowcolor[gray]{0.95}
   294    & 200     & 114   \\
+  \rowcolor[gray]{0.9}
    91     & 80     & 8   \\
+  \rowcolor[gray]{0.95}
    607    & 237     & 309   \\
+  \rowcolor[gray]{0.9}
    540    & 170    & 305  \\
+  \rowcolor[gray]{0.95}
    250    & 278    & 123  \\
+  \rowcolor[gray]{0.9}
    340    & 369     & 45   \\
+  \rowcolor[gray]{0.95}
    277    & 214    & 160  \\
+  \rowcolor[gray]{0.9}
   B      & 397   & 92 \\
+  \rowcolor[gray]{0.95}
         &  B     &  93      \\
+  \rowcolor[gray]{0.9}
          &         &  61      \\
+  \rowcolor[gray]{0.95}
         &         &   292     \\
+  \rowcolor[gray]{0.9}
         &         &   B     \\
+  \rowcolor[gray]{0.95}
  104917  &  103563  &109427 \\
 \hline
 \end{tabularx}
@@ -394,39 +422,43 @@ output result
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \caption{问题3结果}
 \begin{tabularx}{0.9\textwidth}{|Y|Y|Y|Y|Y|Y|}
-  \hline %定义表格宽度
+\hline %定义表格宽度
+\rowcolor{color1}
   数据集1  &  数据集1  &  \multicolumn{2}{c|}{数据集2 (无问题点)}  & \multicolumn{2}{c|}{数据集2 (有问题点)} \\
-  \hline
+\hline
+\rowcolor[gray]{0.95}
   A问题3   & A问题3   &  \multicolumn{2}{c|}{A问题3}    &  \multicolumn{2}{c|}{A问题3}      \\
   \hline
+  \rowcolor[gray]{0.9}
   503      & 503     & 169      & 73      & 169     & 73   \\
-  \hline
+  \rowcolor[gray]{0.95}
   69       & 69      & 322      & 249     & 322     & 249   \\
-  \hline
+  \rowcolor[gray]{0.9}
   506      & 506      & 270     & 274     & 270     & 274   \\
-  \hline
+  \rowcolor[gray]{0.95}
   371      & 371      & 89      & 12      & 89      & 12   \\
-  \hline
+  \rowcolor[gray]{0.9}
   183      & 183      & 236     & 216     & 236     & 216  \\
-  \hline
+  \rowcolor[gray]{0.95}
   194      & 194      & 132     & 16      & 132     & 16   \\
-  \hline
+  \rowcolor[gray]{0.9}
   450      & 450      & 53      & 282     & 53      & 282   \\
-  \hline
+  \rowcolor[gray]{0.95}
   286      & 113      & 112     & 84      & 112     & 141  \\
-  \hline
+  \rowcolor[gray]{0.9}
   485      & 485      &  268    & 287     & 268     & 291 \\
-  \hline
+  \rowcolor[gray]{0.95}
  \red{B (9D)}~~     & 248      & 250     & 99      & 250     &161 \\
- \hline
+ \rowcolor[gray]{0.9}
    & \red{B (10D)}   & 243     & \red{B (21D)}   & 243    & \red{B (21D)} \\
-   \hline
+ \rowcolor[gray]{0.95}
     &          &         &         &         &       \\
-    \hline
+ \rowcolor[gray]{0.9}
   104861m  & 103518m  &         & 168924m  &         &161650m \\
 \hline
 \end{tabularx}
 \end{table}
+
 
 
 \subsection{图形}
@@ -447,6 +479,8 @@ output result
 \end{minipage}
 \end{figure}
 
+
+\clearpage
 这是一个算法流程图
 \begin{figure}[htp!]
 \centering
@@ -465,8 +499,8 @@ output result
 \end{figure}
 
 
-\clearpage
 \subsection{问题三分析}
+
 
 题目要求制作软件的意思就是客户给定折叠桌高度、桌面边缘线的形状大小和桌脚边缘线的大致形状，将这些信息输入程序就得到客户想要的桌子。我们在求解最优设计加工参数时，自行给定桌面边缘线形状（椭圆、相交圆等），桌脚边缘线形状，折叠桌高度，应用第二问的非线性规划模型，用MATLAB软件绘制折叠桌截面图，得到自己设计的创意平板折叠桌。
 
@@ -577,4 +611,4 @@ except AttributeError:
 
 
 
-\end{document} 
+\end{document}
